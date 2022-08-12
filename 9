@@ -1,4 +1,18 @@
 #!/bin/bash
 echo "give me the file name and extension"
 read $a
-sed '/^$/d' sample
+if [ $# -eq 1 ]   #Checking whether user has given cla or not.
+then
+	if [ -s $1 ]  #To check whether file is empty or not.
+	then
+		sed -i '/^$/d' $1   #This will remove all empty lines, empty lines with tab spaces and empty lines with horizontal spaces.
+		sed -i '/[[:blank:]]/d' $1   #Removes all blank spaces
+		sed -i '/[[:space:]]/d' $1    #removes all spaces in a line
+		echo "Empty lines are deleted"
+		cat $1   #To display the contents of file after removing the empty lines.
+	else
+		echo "Error : file1.txt is empty, So cannot delete the empty lines."
+	fi
+else
+	echo "Error: Please pass the file name through command line."
+fi
