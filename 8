@@ -1,21 +1,12 @@
-if [ $# -eq 1 ] #Checking whether cla is passed or not.
-then
-	len=$1   #Let len variable store the number
-	if [ ${#len} -gt 1 ] #Taking only multi digit number
-	then
-		digit=0   #storing last digit of the number in every iteration
-		rev=0    #To get the reversed number
-		while [ $len -gt 0 ]    #Iterating until $len becomes 0 by which all digits will be accessed.
-		do
-			digit=$(($len%10))  #To get the last digi for each iteration.
-			let rev=$rev\*10   #To store the place value of the number.
-			let rev=$rev+$digit   #stores the number in reversed order.
-			let len=$len/10    #To remove last digit for each iteration.
-		done
-		echo "Reversed number is $rev"
-	else
-		echo "Error: pass a multi-digit number"
-	fi
-else
-	echo "Error: No arguments passed"
-fi
+!/bin/bash
+echo "give me a number"
+read a
+sd=0
+rev=0
+while [ $a -gt 0 ]
+do
+sd=$(( $a % 10 ))
+rev=$(( $rev * 10 + $sd ))
+a=$(( $a / 10))
+done
+echo "reverse number of entered digit is" $rev
