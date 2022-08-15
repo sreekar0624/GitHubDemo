@@ -1,0 +1,14 @@
+if [ $# -eq 1 ]  #To check if CLA is passed or not
+then
+	arr=(`ls`) #Storing all the contents of present directory in an array
+	for i in ${arr[@]}
+	do
+		x=`echo "$i" | cut -d "." -f1 | tr -d [:alpha:]`  #To retain only number and storing it in a variable x.
+		b=.jpg
+        mv "$i" "$1$x$b"
+	done
+	echo "All .jpg files in current directory is renamed as"
+	ls
+else
+	echo "Error : Please pass the prefix name through command line."
+fi
